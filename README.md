@@ -36,4 +36,4 @@ If you find this work useful, please cite:
 
 ## Contact
 
-For questions, reach out to Arash Lagzian (alagzian@visitor.nus.edu.sg).
+For questions, reach out to Arash Lagzian (arash.lagzian94@gmail.com).
