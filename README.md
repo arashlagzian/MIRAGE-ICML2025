@@ -18,6 +18,28 @@ Recent advances in Large Language Models (LLMs) have revolutionized artificial i
 
 MIRAGE proceeds in four stages: (1) the Selector ranks conceptual reasoning perspectives, (2) the Reasoner solves the problem under each selected perspective, (3) if confidence exceeds a threshold the answer is returned, and (4) otherwise the answers across perspectives are aggregated. Averaging fewer than two forward passes across four benchmarks, MIRAGE requires no parameter updates to the base LLM.
 
+
+**Algorithm 1** Inference-Time Multi-Perspective Reasoning
+
+```
+Require: Query q, perspective set S, selector SELECTOR, reasoner REASONER,
+          confidence threshold τ, max attempts k
+
+ (0) Receive query q
+ (1) S_ranked ← SELECTOR(q)                    ▷ Rank perspectives by p(s_i | q)
+     Initialize history H ← ∅
+     for t = 1 to k do
+         s_(t) ← S_ranked[t]                   ▷ Select top-ranked perspective
+         q_(t) ← TRANSFORM(q, s_(t), H)        ▷ Adapt query to current perspective
+ (2)     (a_(t), c_(t)) ← REASONER(q_(t), s_(t))  ▷ Answer and confidence
+         if c_(t) ≥ τ then
+ (3)         RETURN a_(t)                      ▷ Return confident answer
+         end if
+         H ← H ∪ {(s_(t), a_(t), c_(t))}        ▷ Update reasoning history
+     end for
+ (4) RETURN AGGREGATE({(a_(1), c_(1)), ..., (a_(k), c_(k))})  ▷ Fallback: aggregate answers
+```
+
 ## Code
 
 Code and the selector training scripts used in this work will be released here. Check back soon, or open an issue if you'd like early access.
