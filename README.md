@@ -22,22 +22,21 @@ MIRAGE proceeds in four stages: (1) the Selector ranks conceptual reasoning pers
 **Algorithm 1** Inference-Time Multi-Perspective Reasoning
 
 ```
-Require: Query q, perspective set S, selector SELECTOR, reasoner REASONER,
-          confidence threshold τ, max attempts k
-
- (0) Receive query q
- (1) S_ranked ← SELECTOR(q)                    ▷ Rank perspectives by p(s_i | q)
-     Initialize history H ← ∅
-     for t = 1 to k do
-         s_(t) ← S_ranked[t]                   ▷ Select top-ranked perspective
-         q_(t) ← TRANSFORM(q, s_(t), H)        ▷ Adapt query to current perspective
- (2)     (a_(t), c_(t)) ← REASONER(q_(t), s_(t))  ▷ Answer and confidence
-         if c_(t) ≥ τ then
- (3)         RETURN a_(t)                      ▷ Return confident answer
-         end if
-         H ← H ∪ {(s_(t), a_(t), c_(t))}        ▷ Update reasoning history
-     end for
- (4) RETURN AGGREGATE({(a_(1), c_(1)), ..., (a_(k), c_(k))})  ▷ Fallback: aggregate answers
+Require: query q, perspective set S = {s1, ..., sn}, selector SELECTOR,
+         reasoner REASONER, confidence threshold tau, max attempts k
+---------------------------------------------------------------------
+ 1:  S_ranked <- SELECTOR(q)                  // rank perspectives by p(si | q)
+ 2:  H <- {}                                  // init reasoning history
+ 3:  for t = 1 to k do
+ 4:      s_t <- S_ranked[t]                   // next top-ranked perspective
+ 5:      q_t <- TRANSFORM(q, s_t, H)          // adapt query to this perspective
+ 6:      (a_t, c_t) <- REASONER(q_t, s_t)     // answer + confidence
+ 7:      if c_t >= tau then
+ 8:          return a_t                       // confident answer found
+ 9:      H <- H U {(s_t, a_t, c_t)}           // update reasoning history
+10:  end for
+11:  return AGGREGATE({(a_1, c_1), ..., (a_k, c_k)})   // fallback: aggregate
+---------------------------------------------------------------------
 ```
 
 ## Code
