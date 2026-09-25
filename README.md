@@ -5,7 +5,7 @@ National University of Singapore
 
 Accepted at the ICML 2025 Workshop on **Multi-Agent Systems in the Era of Foundation Models: Opportunities, Challenges and Futures (MAS-2025)**
 
-[[Workshop Page]](https://icml.cc/virtual/2025/49301) [[Paper (PDF)]](./MIRAGE_ICML2025_Workshop.pdf)
+[[Workshop Page]](https://icml.cc/virtual/2025/49301) [[Paper (arXiv)]](https://arxiv.org/abs/2609.21554)
 
 ## Abstract
 
@@ -48,11 +48,12 @@ Code and the selector training scripts used in this work will be released here. 
 If you find this work useful, please cite:
 
 ```bibtex
-@inproceedings{lagzian2025mirage,
-  title     = {{MIRAGE}: Multi-Perspective Creative Language Model Reasoning with Reinforcement Learning Guidance},
-  author    = {Lagzian, Arash and Anumasa, Srinivas and Liu, Dianbo},
-  booktitle = {ICML 2025 Workshop on Multi-Agent Systems in the Era of Foundation Models: Opportunities, Challenges and Futures (MAS-2025)},
-  year      = {2025}
+@article{lagzian2025mirage,
+  title   = {{MIRAGE}: Multi-Perspective Creative Language Model Reasoning with Reinforcement Learning Guidance},
+  author  = {Lagzian, Arash and Anumasa, Srinivas and Liu, Dianbo},
+  journal = {arXiv preprint arXiv:2609.21554},
+  year    = {2025},
+  note    = {Accepted at the ICML 2025 Workshop on Multi-Agent Systems in the Era of Foundation Models: Opportunities, Challenges and Futures (MAS-2025)}
 }
 ```
 
